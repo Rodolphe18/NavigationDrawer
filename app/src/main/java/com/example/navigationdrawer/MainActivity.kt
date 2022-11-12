@@ -25,15 +25,19 @@ class MainActivity : ComponentActivity() {
                 val scaffoldState = rememberScaffoldState()
                 val scope = rememberCoroutineScope()
                 Scaffold(
+                    scaffoldState = scaffoldState,
                     topBar = {
                              AppBar(onNavigationIconClick = {
-                                 scope.launch { scaffoldState.drawerState.open() }
-
-                             })
+                                 scope.launch {
+                                     scaffoldState.drawerState.open()
+                                 }
+                             }
+                             )
                     },
                     drawerContent = {
                         DrawerHeader()
-                        DrawerBody(listItems = listOf(
+                        DrawerBody(
+                            listItems = listOf(
                             MenuItem(
                                 id = "home",
                                 title = "Home",
@@ -42,7 +46,7 @@ class MainActivity : ComponentActivity() {
                             ),
                             MenuItem(
                                 id = "settings",
-                                title = "Settingd",
+                                title = "Settings",
                                 contentDescription = "Go to settings screen",
                                 Icons.Default.Settings
                             ),
@@ -52,8 +56,8 @@ class MainActivity : ComponentActivity() {
                                 contentDescription = "Get help",
                                 Icons.Default.Info
                             )
-
-                        ), onItemClick = {
+                        ),
+                            onItemClick = {
                             println("Clicked on ${it.title}")
                         })
                     }
@@ -62,18 +66,5 @@ class MainActivity : ComponentActivity() {
                 }
             }
         }
-    }
-}
-
-@Composable
-fun Greeting(name: String) {
-    Text(text = "Hello $name!")
-}
-
-@Preview(showBackground = true)
-@Composable
-fun DefaultPreview() {
-    NavigationDrawerTheme {
-        Greeting("Android")
     }
 }

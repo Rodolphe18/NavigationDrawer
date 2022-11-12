@@ -30,7 +30,7 @@ fun DrawerHeader() {
 fun DrawerBody(
     listItems: List<MenuItem>,
     modifier: Modifier = Modifier,
-    itemtextStyle: TextStyle = TextStyle(fontSize = 18.sp),
+    itemTextStyle: TextStyle = TextStyle(fontSize = 18.sp),
     onItemClick: (MenuItem) -> Unit
 ) {
     LazyColumn(modifier) {
@@ -41,9 +41,9 @@ fun DrawerBody(
                     .clickable { onItemClick(item) }
                     .padding(16.dp)
             ) {
-                Icon(imageVector = item.icon,contentDescription = null)
+                Icon(imageVector = item.icon,contentDescription = item.contentDescription)
                 Spacer(modifier = Modifier.width(16.dp))
-                Text(text = item.title, modifier = Modifier.weight(1f))
+                Text(text = item.title, style = itemTextStyle,modifier = Modifier.weight(1f))
             }
         }
     }
